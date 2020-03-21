@@ -6,11 +6,11 @@ import Goals from "./Goals"
 export class Home extends Component {
     render() {
         return (
-            <Fragment>
+            <div className="container">
                 <WhoAreWe />
                 <Goals />
                 <DisplayNews />
-            </Fragment>
+            </div >
         )
     }
 }

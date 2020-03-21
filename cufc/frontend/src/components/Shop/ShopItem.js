@@ -49,19 +49,14 @@ export class ShopItem extends Component {
                 <div className="box">
                     {this.props.shop_item.sale ? sale : <Fragment /> }
                     <article className="media">
-
-                        <figure  className="media-left">
-                            <p className="image">
+                        <figure  className="media-left image" style={{margin:"auto"}}>
                                 <img src={this.props.shop_item.image} style={{maxHeight:"480px",maxWidth:"480px"}}/>
-                            </p>
                         </figure>
-                        <div className='media-content'style={{textAlign:"center"}}>
-                            <div className='section'>
-                                <h1 className="title has-text-grey-light">{this.props.shop_item.name}</h1>
-                                <p className="subtitle">{this.props.shop_item.description}</p>
-                            </div>
-                            <h2 className="heading">Price</h2>
-                            <p className="subtitle">${this.adjusted_price}</p>
+                        <div className='media-content'>
+                                <h1 className="title is-2 has-text-grey-light">{this.props.shop_item.name}</h1>
+                                <p className="content is-6" style={{width:"100%"}}>{this.props.shop_item.description}</p>
+                                <h6 className="has-text-weight-normal is-size-6">Price</h6>
+                                <p className="has-text-weight-light is-size-4">${this.adjusted_price}</p>
                                 <div className="field">
                                     <label className="heading">Available Sizes</label>
                                     <div className="field">

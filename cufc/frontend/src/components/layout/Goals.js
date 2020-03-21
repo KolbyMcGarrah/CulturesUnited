@@ -3,7 +3,7 @@ import React, { Component, Fragment } from 'react'
 export class Goals extends Component {
     render() {
         return (
-            <div className="section container is-vcentered" style={{textAlign:"center"}}>
+            <div className="section" style={{textAlign:"center"}}>
                 <h1 className="title is-1">Our Values</h1>
                 <div className="columns">
                     <div className="column is-4">

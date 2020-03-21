@@ -89,7 +89,7 @@ export class ShopList extends Component {
                     </div>
                 </div>
                 <div className={this.state.showCart ? "modal is-active" : "modal"}>
-                            <div className="modal-background"></div>
+                            <div className="modal-background" onClick={this.hideCart}></div>
                             <div className="modal-card">
                                 <div className="modal-card-head">
                                     <h3 className="modal-card-title">Cart</h3>
@@ -136,7 +136,7 @@ export class ShopList extends Component {
                                 </div>
                                 <div className="modal-card-foot">
                                     <button className="button is-black is-right">Checkout</button>
-                                    <label className="label">Total: {this.state.total.toFixed(2)}</label>
+                                    <label className="label" style={{marginLeft:"auto"}}>Total: {this.state.total.toFixed(2)}</label>
                                 </div>
                             </div>
                             <button className="modal-close is-large" aria-label="close" onClick={this.hideCart}></button>

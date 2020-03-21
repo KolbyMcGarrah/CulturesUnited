@@ -9,7 +9,7 @@ export class OtherNave extends Component {
                 <Link to="/team" className="link is-info has-text-white">Team</Link>
               </p>
               <p className="level-item has-text-centered">
-                <a className="link is-info has-text-white">Shop</a>
+                <Link to="/shop" className="link is-info has-text-white">Shop</Link>
               </p>
               <p className="level-item has-text-centered">
                 <Link to="/">

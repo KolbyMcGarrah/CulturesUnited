@@ -6,5 +6,5 @@ class ItemViewSet(viewsets.ModelViewSet):
     permissions = [
         permissions.IsAuthenticatedOrReadOnly
     ]
-    queryset = Shop.objects.all()
+    queryset = Item.objects.all()
     serializer_class = ItemSerializer

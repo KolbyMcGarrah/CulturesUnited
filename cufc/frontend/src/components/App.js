@@ -9,7 +9,7 @@ import {
     Route,
 } from "react-router-dom";
 import Footer from "./layout/Footer";
-import EmailList from "./News/EmailList"
+import ShopList from "./Shop/ShopList";
 
 class App extends Component {
     render() {
@@ -18,6 +18,7 @@ class App extends Component {
                 <TopBanner />
                 <Switch>
                     <Route exact path='/team' component={TeamPageAll} />
+                    <Route exact path='/shop' component={ShopList} />
                     <Route exact path='/' component={Home} />
                 </Switch>
                 <Footer />

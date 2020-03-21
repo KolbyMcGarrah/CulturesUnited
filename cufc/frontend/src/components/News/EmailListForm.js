@@ -4,7 +4,7 @@ export class EmailListForm extends Component {
     render() {
         return (
             <div className="">
-                <form className='columns is-multiline' style={{textAlign:"left",marginTop:"20px;"}}>
+                <form className='columns is-multiline' style={{textAlign:"left",marginTop:"20px"}}>
                     <div className="field column is-8 is-offset-2">
                         <label className="label">Name</label>
                         <div className="control">

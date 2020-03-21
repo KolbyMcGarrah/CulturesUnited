@@ -12,15 +12,15 @@ export class ShopItem extends Component {
         size:"",
 
     }
-    adjusted_price = (this.props.shop_item.price * this.props.shop_item.adjust_price).toFixed(2)
+    adjusted_price = (this.props.shop_item.price * this.props.shop_item.adjust_price)
     addItemToCart = e => {
         if(this.state.quantity > 0){
-            console.log(this.state)
             const cartItem = {
                 item:this.props.shop_item.name,
                 price:this.adjusted_price,
                 quantity:this.state.quantity,
-                size:this.state.size
+                size:this.state.size,
+                img:this.props.shop_item.image
                 }
                 this.props.addToCart(cartItem)
         }

@@ -10,15 +10,7 @@ export class ShopList extends Component {
         showCart:false,
         total:0.00
     }
-    componentDidMount(){
-        axios.get("api/shop/items/")
-        .then(res => {
-            const shopItems = res.data
-            this.setState({shopItems})
-        })
-    }
     addToCart = item => {
-        console.log(item)
         let curAmount = this.state.amount
         curAmount += parseInt(item.quantity)
         this.setState({amount:curAmount})
@@ -26,7 +18,7 @@ export class ShopList extends Component {
         curCart.push(item)
         this.setState({cart:curCart})
         let curTotal = this.state.total
-        curTotal += parseInt(item.price) * curAmount
+        curTotal += parseInt(item.price) * parseInt(item.quantity)
         this.setState({total:curTotal})
     }
 
@@ -42,56 +34,37 @@ export class ShopList extends Component {
         })
     }
 
-    render() {
-        const { amount, cart } = this.state;
-        for(let i=0;i<cart.length;i++){
-            console.log(cart[i].item)
+    removeCartItem = index => {
+        let curTotal = this.state.total
+        let curAmount = this.state.amount
+        let curCart = this.state.cart
+        let item = curCart[index]
+        curTotal -= parseInt(item.price) * parseInt(item.quantity)
+        if(curTotal<0){
+            curTotal = 0
         }
-        const modal = (
-            <div className="modal is-active">
-                            <div className="modal-background"></div>
-                            <div className="modal-card">
-                                <div className="modal-card-head">
-                                    <h3 className="modal-card-title">Cart</h3>
-                                </div>
-                                <div className="modal-card-body">
-                                    <table className="table">
-                                        <thead>
-                                            <tr>
-                                                <th>Item</th>
-                                                <th>Details</th>
-                                                <th>Individual Price</th>
-                                                <th>Quantity</th>
-                                                <th>Total Price</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                        {cart.map(cartItem =>{
-                                            <tr>
-                                                <td>cartItem.item</td>
-                                                <td>cartItem.size</td>
-                                                <td>cartItem.price</td>
-                                                <td><input 
-                                                        type="number"
-                                                        name="quantity" 
-                                                        value={cartItem.item.quantity}
-                                                    />
-                                                </td>
-                                                <td>{parseInt(cartItem.item.price) * parseInt(cartItem.item.quantity)}</td>
-                                            </tr>
-                                        })}
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div className="modal-card-foot">
-                                    <label className="label">Total: {this.state.total.toFixed(2)}</label>
-                                    <button className="button is-black">Checkout</button>
-                                </div>
-                            </div>
-                            <button className="modal-close is-large" aria-label="close" onClick={this.hideCart}></button>
-                        </div>
-        )
+        curAmount -= parseInt(item.quantity)
+        if(curAmount<0){
+            curAmount = 0
+        }
+        curCart.splice(index,1)
+        this.setState({
+            cart:curCart,
+            total:curTotal,
+            amount:curAmount
+        })
+    }
 
+    componentDidMount(){
+        axios.get("api/shop/items/")
+        .then(res => {
+            const shopItems = res.data
+            this.setState({shopItems})
+        })
+    }
+    
+    render() {
+        const { amount } = this.state;
         const cartButton = (
             <button className='button is-black is-rounded' 
                     style={{position:'fixed', zIndex:'2', marginLeft:'20px'}}
@@ -115,7 +88,59 @@ export class ShopList extends Component {
                         }
                     </div>
                 </div>
-                {this.state.showCart ? modal : <Fragment />}
+                <div className={this.state.showCart ? "modal is-active" : "modal"}>
+                            <div className="modal-background"></div>
+                            <div className="modal-card">
+                                <div className="modal-card-head">
+                                    <h3 className="modal-card-title">Cart</h3>
+                                </div>
+                                <div className="modal-card-body">
+                                    <table className="table image is-hoverable">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>Item</th>
+                                                <th>Size</th>
+                                                <th>Price</th>
+                                                <th>Quantity</th>
+                                                <th>Total Price</th>
+                                                <th>Remove</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {this.state.cart.map((cartItem, index) => (
+                                            <tr key={index}>
+                                                <td>
+                                                    <figure className="image is-24x24">
+                                                        <img src={cartItem.img}/>
+                                                    </figure>
+                                                </td>
+                                                <td>{cartItem.item}</td>
+                                                <td>{cartItem.size}</td>
+                                                <td>{cartItem.price}</td>
+                                                <td>{cartItem.quantity}</td>
+                                                <td>{(parseInt(cartItem.quantity)*parseInt(cartItem.price)).toFixed(2)}</td>
+                                                <td>
+                                                    <button 
+                                                        className='button is-danger is-outlined is-small' 
+                                                        style={{margin:"0"}}
+                                                        onClick={() => this.removeCartItem(index)}
+                                                    >
+                                                    Remove
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div className="modal-card-foot">
+                                    <button className="button is-black is-right">Checkout</button>
+                                    <label className="label">Total: {this.state.total.toFixed(2)}</label>
+                                </div>
+                            </div>
+                            <button className="modal-close is-large" aria-label="close" onClick={this.hideCart}></button>
+                        </div>
             </Fragment>
         )
     }

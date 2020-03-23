@@ -55,6 +55,11 @@ export class ShopList extends Component {
         })
     }
 
+    checkout = () => {
+        const cart = this.state.cart
+        axios.post("api/shop/checkout/",cart)
+    }
+
     componentDidMount(){
         axios.get("api/shop/items/")
         .then(res => {
@@ -135,7 +140,7 @@ export class ShopList extends Component {
                                     </table>
                                 </div>
                                 <div className="modal-card-foot">
-                                    <button className="button is-black is-right">Checkout</button>
+                                    <button className="button is-black is-right" onClick={this.checkout}>Checkout</button>
                                     <label className="label" style={{marginLeft:"auto"}}>Total: {this.state.total.toFixed(2)}</label>
                                 </div>
                             </div>

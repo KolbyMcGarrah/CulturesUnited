@@ -1,5 +1,6 @@
 from rest_framework import routers
-from .api import ItemViewSet
+from django.urls import path, include
+from .api import ItemViewSet, CheckoutViewSet
 
 router = routers.DefaultRouter()
 

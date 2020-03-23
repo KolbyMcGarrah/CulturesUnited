@@ -126,3 +126,8 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Square Test Settings
+SquareLocationID = 'SJ1Y3WNBK1K3B'
+SquareApplicationID = "sandbox-sq0idb-LCr0a2gXbkj3hZ2alJ3mtQ"
+SquareAccessToken = "EAAAEI6eTYEqNHydq22Q2Fr7HST0q25tnhABB8t4Pk0zPGis0kggfh4-mUbg06Bq"

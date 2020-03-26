@@ -6,5 +6,6 @@ urlpatterns = [
     path('',include('team.urls')),
     path('',include('news.urls')),
     path('',include('shop.urls')),
+    path('',include('checkout.urls')),
     path('admin/', admin.site.urls),
 ]

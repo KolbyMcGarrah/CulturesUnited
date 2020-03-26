@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'frontend',
     'news',
     'shop', 
-    'mailing'
+    'mailing',
+    'schedule',
+    'checkout'
 ]
 
 MIDDLEWARE = [
@@ -53,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'cufc.urls'
@@ -125,9 +128,11 @@ MEDIA_URL = '/media/'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Square Test Settings
-SquareLocationID = 'SJ1Y3WNBK1K3B'
-SquareApplicationID = "sandbox-sq0idb-LCr0a2gXbkj3hZ2alJ3mtQ"
-SquareAccessToken = "EAAAEI6eTYEqNHydq22Q2Fr7HST0q25tnhABB8t4Pk0zPGis0kggfh4-mUbg06Bq"
+SQUARE_LOCATION_ID = 'SJ1Y3WNBK1K3B'
+SQUARE_APPLICATION_ID = "sandbox-sq0idb-LCr0a2gXbkj3hZ2alJ3mtQ"
+SQUARE_ACCESS_TOKEN = "EAAAEI6eTYEqNHydq22Q2Fr7HST0q25tnhABB8t4Pk0zPGis0kggfh4-mUbg06Bq"

@@ -57,7 +57,13 @@ export class ShopList extends Component {
 
     checkout = () => {
         const cart = this.state.cart
-        axios.post("api/shop/checkout/",cart)
+        axios.post("api/checkout/",cart)
+        .then(res => {
+            return res
+        })
+        .then(res => {
+            location.replace(res.data.payload.checkout.checkout_page_url)
+        })
     }
 
     componentDidMount(){

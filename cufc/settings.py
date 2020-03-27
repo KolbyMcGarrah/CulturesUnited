@@ -25,7 +25,7 @@ SECRET_KEY = 'q+o#d9_^hmmrd8_2+*aknit9777-$7b628+la-^9!*4l1=38!-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['cufc.herokuapp.com','localhost']
 
 
 # Application definition

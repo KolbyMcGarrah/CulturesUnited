@@ -5,7 +5,13 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack --mode development --watch ./cufc/frontend/src/index.js --output ./cufc/frontend/static/frontend/main.js",
-    "build": "webpack --mode production ./cufc/frontend/src/index.js --output ./cufc/frontend/static/frontend/main.js"
+    "build": "webpack --mode production ./cufc/frontend/src/index.js --output ./cufc/frontend/static/frontend/main.js",
+    "postinstall": "npm run build"
+  },
+  "engines":{
+    "node":"13.11.0",
+    "npm":"6.14.3"
+
   },
   "keywords": [],
   "author": "",

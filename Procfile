@@ -1,2 +1,2 @@
-web: gunicorn cufc.cufc.wsgi.py --log-file -
-release: python cufc/manage.py migrate
+web: gunicorn cufc.wsgi.py --log-file -
+release: python manage.py migrate
